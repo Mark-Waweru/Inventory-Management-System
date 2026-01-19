@@ -1,0 +1,5 @@
+<div class='product-container'>
+    <% @products.each do |product| %>
+    <%= render "product", product: product, mode: params[:mode] %>
+    <% end %>
+</div>

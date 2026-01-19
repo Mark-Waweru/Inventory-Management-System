@@ -1,0 +1,56 @@
+<!-- Edit Container Form -->
+<div>
+    <%= form_with model: @product do |f| %>
+    <!-- Product Name and Price Input container -->
+    <div>
+        <!-- Product Name -->
+        <div>
+            <%= f.label :name, "Product Name" %><br>
+            <%= f.text_field :name %>
+        </div>
+
+        <!-- Product Price -->
+        <div>
+            <%= f.label :price, "Price" %><br>
+            <%= f.number_field :price %>
+        </div>
+    </div>
+    <!-- Product Quantity and Upload Image button -->
+    <div>
+        <!-- Quantity -->
+        <div>
+            <%= f.label :quantity, "Quantity" %><br>
+            <%= f.number_field :quantity %>
+        </div>
+        <!-- Image Upload -->
+        <div>
+            <%= f.label :product_image, "Upload Image" %><br>
+            <%= f.file_field :product_image %>
+            <% if product.product_image.attached? %>
+                <p>Current image:</p>
+                <%= image_tag product.product_image, width: 150 %>
+            <% end %>
+        </div>
+    </div>
+    <!-- Description Container -->
+    <div>
+        <!-- Description -->
+        <div>
+            <%= f.label :description, "Description" %><br>
+            <%= f.rich_text_area :description %>
+        </div>
+    </div>
+    <!-- Cancel and Save Buttons Container -->
+    <div>
+        <%= link_to "Cancel", inventory_path %>
+        <%= f.submit "Save" %>
+    </div>
+    <% end %>
+
+    <% unless product.new_record? %>
+        <%= button_to "Delete",
+        product_path(product),
+        method: :delete,
+        data: { turbo_confirm: "Are you sure you want to delete this product?" } %>
+    <% end %>
+</div>
