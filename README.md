@@ -1,8 +1,10 @@
 # BigShelf Inventory Management System
+
 The Inventory Management System is a web-based application built with Ruby on Rails and Hotwire to help administrators manage products and track stock levels in a retail store.
 The system provides real-time stock updates, low-stock notifications, and an intuitive user interface for managing inventory efficiently.
 ---
 ## Documentation
+
 For detailed documentation including architecture diagrams, API specifications, and feature descriptions, please refer to our comprehensive project documentation:
 [BigShelf IMS Full Project Documentation](https://docs.google.com/document/d/1Hj64jM0tDR5fhXg-obzKzuKHLz3NmIYt-9tSXjHcFMM/edit?usp=sharing)
 ---
