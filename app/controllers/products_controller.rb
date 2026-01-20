@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[edit update destroy]
+  before_action :set_product, only: %i[edit update destroy purchase]
   def index
     @products = Product.all
   end
@@ -43,6 +43,20 @@ class ProductsController < ApplicationController
     # Respond to HTML and Turbo Stream formats
     respond_to do |format|
       format.html
+      format.turbo_stream
+    end
+  end
+
+  def purchase
+    if @product.quantity > 0
+      @product.decrement!(:quantity)
+      @message = "1 Product purchase successfully"
+    else
+      @message = "Product is out of stock"
+    end
+
+    respond_to do |format|
+      format.html { redirect_to shop_path, notice: @message }
       format.turbo_stream
     end
   end

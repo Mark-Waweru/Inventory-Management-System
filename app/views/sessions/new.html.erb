@@ -1,0 +1,49 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+  <div class="w-full max-w-sm">
+    <% if alert = flash[:alert] %>
+      <p class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="alert"><%= alert %></p>
+    <% end %>
+
+    <% if notice = flash[:notice] %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+
+    <div class="bg-white rounded-2xl shadow-lg px-12 py-10">
+      <!-- Logo Section -->
+      <div class="flex items-center justify-center gap-3 mb-12">
+        <%= image_tag "bigshelf-logo.svg", class: "h-12" %>
+        <p class="text-4xl font-semibold" style="color: #F87E11;">BigShelf</p>
+      </div>
+
+      <%= form_with url: session_url, class: "space-y-8" do |form| %>
+        <!-- Email Field -->
+        <div>
+          <%= form.label :email_address, "Email", class: "block text-sm font-semibold mb-1.5", style: "color: rgba(0, 0, 0, 0.9);" %>
+          <%= form.email_field :email_address, 
+              required: true, 
+              autofocus: true, 
+              autocomplete: "username", 
+              value: params[:email_address], 
+              class: "block w-full rounded border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-orange-500 focus:border-orange-500" %>
+        </div>
+
+        <!-- Password Field -->
+        <div>
+          <%= form.label :password, "Password", class: "block text-sm font-semibold mb-1.5", style: "color: rgba(0, 0, 0, 0.9);" %>
+          <%= form.password_field :password, 
+              required: true, 
+              autocomplete: "current-password", 
+              maxlength: 72, 
+              class: "block w-full rounded border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-orange-500 focus:border-orange-500" %>
+        </div>
+
+        <!-- Sign In Button -->
+        <div>
+          <%= form.submit "Sign In", 
+              class: "w-full rounded px-4 py-2.5 text-white font-medium cursor-pointer hover:opacity-90 transition-opacity", 
+              style: "background-color: #F87E11;" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -7,7 +7,12 @@
             <%= link_to "Inventory", inventory_path, class: "hover-text-[#F87E11]" %>
             <%= link_to "New Products", new_product_path, class: "hover-text-[#F87E11]" %>
         </div>
-        <div>Signout</div>
+        <% if authenticated? %>
+            <%= button_to "Logout",
+                session_path,
+                method: :delete,
+                class: "flex flex-row w-full ml-auto cursor-pointer rounded items-center justify-center p-2 text-white bg-[#F87E11]" %>
+        <% end %>
     </div>
 
     <% mode =
