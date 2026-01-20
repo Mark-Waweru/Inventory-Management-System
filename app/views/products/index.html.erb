@@ -1,5 +1,6 @@
-<div class='product-container'>
+<%# Product container %>
+<div class='grid grid-cols-3 gap-3 justify-center w-full' id="product_section">
     <% @products.each do |product| %>
-    <%= render "product", product: product, mode: params[:mode] %>
+        <%= render "product", product: product, mode: params[:mode] %>
     <% end %>
 </div>

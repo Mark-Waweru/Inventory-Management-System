@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :set_product, only: %i[edit update destroy]
   def index
     @products = Product.all
   end
@@ -17,12 +18,9 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find(params[:id])
   end
 
   def update
-    @product = Product.find(params[:id])
-
     if @product.update(product_params)
     redirect_to inventory_path, notice: "Product updated successfully"
     else
@@ -31,12 +29,29 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product = Product.find(params[:id])
     @product.destroy
     redirect_to inventory_path, notice: "Product deleted successfully"
   end
 
+  def search
+    if params[:query].present?
+      @products = Product.search(params[:query])
+    else
+      @products = Product.all
+    end
+
+    # Respond to HTML and Turbo Stream formats
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
+  end
+
   private
+
+  def set_product
+    @product = Product.find(params[:id])
+  end
 
   def product_params
   params.require(:product).permit(

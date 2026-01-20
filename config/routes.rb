@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   # Gets the Shop Page
   get "/shop", to: "products#index", as: :shop, defaults: { mode: "shop" }
+  get "/search", to: "products#search"
   # Gets the Inventory Page
   get "/inventory", to: "products#index", as: :inventory, defaults: { mode: "inventory" }
 end

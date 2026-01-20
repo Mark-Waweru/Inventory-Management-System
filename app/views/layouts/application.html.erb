@@ -25,6 +25,9 @@
   </head>
 
   <body>
-    <%= yield %>
+    <main class="flex flex-col min-h-screen w-full container items-center justify-center">
+      <%= render partial: "layouts/navbar" %>
+      <%= yield %>
+    </main>
   </body>
 </html>

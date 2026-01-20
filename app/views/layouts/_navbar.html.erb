@@ -1,0 +1,29 @@
+<div class="flex flex-col w-full items-center justify-center">
+    <%# navbar %>
+    <div class="flex flex-row w-full items-center justify-between p-5">
+        <%= image_tag 'bigshelf-logo.svg', class: "" %>
+        <div class="flex flex-row items-center gap-3">
+            <%= link_to "Shop", shop_path, class: "hover-text-[#F87E11]" %>
+            <%= link_to "Inventory", inventory_path, class: "hover-text-[#F87E11]" %>
+            <%= link_to "New Products", new_product_path, class: "hover-text-[#F87E11]" %>
+        </div>
+        <div>Signout</div>
+    </div>
+
+    <% mode =
+        if current_page?(shop_path)
+        "shop"
+        elsif current_page?(inventory_path)
+        "inventory"
+        end
+    %>
+
+    <%# search %>
+    <% unless current_page?(new_product_path) %>
+        <%= form_with url: search_path, method: :get, data: { turbo_stream: true }, class: "flex flex-row w-full items-center justify-center mb-5" do |f| %>
+            <%= f.text_field :query, placeholder: "Search products...", class: "border border-gray-300 rounded-l-lg p-2 w-1/2" %>
+            <%= hidden_field_tag :mode, mode %>
+            <%= f.submit "Search", class: "bg-[#F87E11] text-black rounded-r-lg p-2" %>
+        <% end %>
+    <% end %>
+</div>
